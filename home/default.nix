@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "mikey";
-  home.homeDirectory = "/home/mikey";
-
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
