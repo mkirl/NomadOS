@@ -33,5 +33,25 @@
         }
       ];
     };
+
+    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit ghostty; };
+      modules = [
+        ./hosts/desktop/configuration.nix
+        home-manager.nixosModules.home-manager
+        niri.nixosModules.niri
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.mike = import ./home/desktop.nix;
+          home-manager.extraSpecialArgs = { inherit ghostty; };
+        }
+        {
+          programs.niri.enable = true;
+          programs.dms-shell.enable = true;
+        }
+      ];
+    };
   };
 }
