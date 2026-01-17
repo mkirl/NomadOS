@@ -40,7 +40,6 @@
       modules = [
         ./hosts/desktop/configuration.nix
         home-manager.nixosModules.home-manager
-        niri.nixosModules.niri
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
