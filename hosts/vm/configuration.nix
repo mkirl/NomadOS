@@ -11,7 +11,7 @@
   networking.hostName = "nixos-vm";
   networking.networkmanager.enable = true;
 
-  time.timeZone = "American/Chicago";
+  time.timeZone = "America/Chicago";
 
   users.users.mikey = {
     isNormalUser = true;
@@ -19,6 +19,8 @@
     initialPassword = "changeme";
     shell = pkgs.fish;
   };
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   environment.systemPackages = with pkgs; [
     git

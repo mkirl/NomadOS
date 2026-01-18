@@ -26,6 +26,7 @@
   };
   hardware.graphics.enable = true;
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # User
   users.users.mike = {
     isNormalUser = true;
