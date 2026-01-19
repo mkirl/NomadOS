@@ -51,6 +51,13 @@
   # Tailscale
   services.tailscale.enable = true;
 
+  # 1Password
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "mike" ];
+  };
+  
   # Allow unfree (NVIDIA)
   nixpkgs.config.allowUnfree = true;
 
