@@ -6,16 +6,15 @@
   home.username = "mike";
   home.homeDirectory = "/home/mike";
 
-  home.sessionVariables = {
-    _JAVA_AWT_WM_NONPARENTING = "1";
-  };
-
   home.packages = [
     ghostty.packages.x86_64-linux.default
     pkgs.vscode
     pkgs.firefox
     pkgs.jetbrains.idea-ultimate
     pkgs.zed-editor
-  ];
 
+    (pkgs.writeShellScriptBin "idea" ''
+      exec ${pkgs.jetbrains.idea-ultimate}/bin/idea-ultimate -Dawt.toolkit=name=WLToolkit "$@"
+    '')
+  ];
 }
