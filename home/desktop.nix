@@ -10,6 +10,8 @@
     ghostty.packages.x86_64-linux.default
     pkgs.vscode
     pkgs.firefox
+    pkgs.jetbrains.idea-ultimate
+    pkgs.zed-editor
   ];
 
 }

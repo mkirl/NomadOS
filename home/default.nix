@@ -21,6 +21,8 @@
     ripgrep
     fd
     tree
+    neovim
+    claude-code
   ];
 
   home.stateVersion = "25.11";
