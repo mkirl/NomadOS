@@ -11,10 +11,12 @@
     pkgs.vscode
     pkgs.firefox
     pkgs.zed-editor
-    pkgs.jetbrains.idea-ultimate
+    pkgs.jetbrains.idea
 
-    (pkgs.writeShellScriptBin "idea" ''
-      exec ${pkgs.jetbrains.idea-ultimate}/bin/idea -Dawt.toolkit.name=WLToolkit "$@"
+    (pkgs.writeShellScriptBin "idea-wayland" ''
+      export _JAVA_AWT_WM_NONPARENTING=1
+      export GDK_BACKEND=wayland
+      exec ${pkgs.jetbrains.idea}/bin/idea -Dawt.toolkit.name=WLToolkit "$@"
     '')
   ];
 }
