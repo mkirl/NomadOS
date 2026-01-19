@@ -13,7 +13,7 @@
     pkgs.zed-editor
 
     (pkgs.writeShellScriptBin "idea" ''
-      exec ${pkgs.jetbrains.idea-ultimate}/bin/idea-ultimate -Dawt.toolkit=name=WLToolkit "$@"
+      exec ${pkgs.jetbrains.idea-ultimate}/bin/idea -Dawt.toolkit.name=WLToolkit "$@"
     '')
   ];
 }
