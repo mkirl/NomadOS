@@ -11,6 +11,7 @@
     pkgs.vscode
     pkgs.firefox
     pkgs.zed-editor
+    pkgs.jetbrains.idea-ultimate
 
     (pkgs.writeShellScriptBin "idea" ''
       exec ${pkgs.jetbrains.idea-ultimate}/bin/idea -Dawt.toolkit.name=WLToolkit "$@"
