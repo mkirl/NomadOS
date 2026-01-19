@@ -12,5 +12,14 @@
     pkgs.firefox
     pkgs.zed-editor
     pkgs.jetbrains.idea
+
+    
+    xdg.desktopEntries.idea = {
+      name = "IntelliJ IDEA";
+      exec = "idea -Dawt.toolkit.name=WLToolkit %u";
+      icon = "idea";
+      terminal = false;
+      categories = [ "Development" "IDE" ];
+    };
   ];
 }
