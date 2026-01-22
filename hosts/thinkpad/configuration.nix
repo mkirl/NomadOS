@@ -9,6 +9,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot.initrd.luks.devices."cryptroot" = {
+    device = "/dev/disk/by-uuid/by-uuid/1778ae37-7093-4caf-b5dc-5c34e50fba11";
+  };
+
   networking.hostName = "thinkpad";
   networking.networkmanager.enable = true;
 
