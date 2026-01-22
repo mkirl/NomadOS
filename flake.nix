@@ -52,5 +52,24 @@
         }
       ];
     };
+
+    nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit ghostty; };
+      modules = [
+        ./hosts/thinkpad/configuration.nix
+        home-manager.nixosModules.home-manager
+        niri.nixosModules.niri
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.mike = import ./home/thinkpad.nix;
+          home-manager.extraSpecialArgs = { inherit ghostty; };
+        }
+        {
+          programs.niri.enable = true;
+        }
+      ];
+    };
   };
 }
