@@ -10,7 +10,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.initrd.luks.devices."cryptroot" = {
-    device = "/dev/disk/by-uuid/by-uuid/1778ae37-7093-4caf-b5dc-5c34e50fba11";
+    device = "/dev/disk/by-uuid/1778ae37-7093-4caf-b5dc-5c34e50fba11";
   };
 
   networking.hostName = "thinkpad";
@@ -23,8 +23,8 @@
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      vaapiIntel
-      vaapiVdpau
+      intel-vaapi-driver 
+      libva-vdpau-driver 
       libvdpau-va-gl
     ];
   };
