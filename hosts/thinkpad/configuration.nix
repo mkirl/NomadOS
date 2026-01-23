@@ -62,8 +62,10 @@
     polkitPolicyOwners = [ "mike" ];
   };
 
-  # Enable trackpad?
-  services.libinput.enable = true;
+  services.displayManager.dms-greeter = {
+    enable = true;
+    compositor.name = "niri";
+  };
 
   # Laptop power management
   services.thermald.enable = true;
