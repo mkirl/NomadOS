@@ -69,8 +69,16 @@
         }
         {
           programs.niri.enable = true;
-          programs.dms-shell.enable = true;
-        }
+	  programs.dms-shell = {
+	    enable = true;
+	    systemd.enable = true;
+	    enableSystemMonitoring = true;
+	    enableClipboard = true;
+	    enableVPN = true;
+	    enableDynamicTheming = true;
+	    enableAudioWavelength = true;
+	    enableCalendarEvents = true;
+        };
       ];
     };
   };
