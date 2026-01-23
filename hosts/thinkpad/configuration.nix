@@ -56,6 +56,9 @@
     polkitPolicyOwners = [ "mike" ];
   };
 
+  # Enable trackpad?
+  services.libinput.enable = true;
+
   # Laptop power management
   services.thermald.enable = true;
   services.upower.enable = true;
