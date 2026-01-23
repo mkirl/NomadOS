@@ -78,7 +78,8 @@
 	    enableDynamicTheming = true;
 	    enableAudioWavelength = true;
 	    enableCalendarEvents = true;
-        };
+          };
+	}
       ];
     };
   };
