@@ -9,6 +9,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot.kernelParams = [ "acpi_osi=Linux" ];
+
   boot.initrd.luks.devices."cryptroot" = {
     device = "/dev/disk/by-uuid/1778ae37-7093-4caf-b5dc-5c34e50fba11";
   };
@@ -55,14 +57,8 @@
   };
 
   # Laptop power management
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-    };
-  };
   services.thermald.enable = true;
+  services.upower.enable = true;
 
   # Bluetooth
   hardware.bluetooth.enable = true;
