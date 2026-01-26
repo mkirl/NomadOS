@@ -29,6 +29,11 @@
     ];
   };
 
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;
+  };
+
   # Audio
   services.pipewire = {
     enable = true;
