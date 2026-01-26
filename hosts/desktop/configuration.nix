@@ -26,6 +26,11 @@
   };
   hardware.graphics.enable = true;
 
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # User
   users.users.mike = {
