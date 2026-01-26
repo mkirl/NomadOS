@@ -22,9 +22,29 @@
     fd
     tree
     neovim
+    zed-editor
     claude-code
     solaar
+    zellij
+    jetbrains.idea-ultimate
+    jetbrains.clion
   ];
+
+  xdg.desktopEntries.idea = {
+    name = "IntelliJ IDEA";
+    exec = "idea -Dawt.toolkit.name=WLToolkit %u";
+    icon = "idea";
+    terminal = false;
+    categories = [ "Development" "IDE" ];
+  };
+
+  xdg.desktopEntries.clion = {
+    name = "CLion";
+    exec = "clion -Dawt.toolkit.name=WLToolkit %u";
+    icon = "clion";
+    terminal = false;
+    categories = [ "Development" "IDE" ];
+  };
 
   home.stateVersion = "25.11";
 
