@@ -23,6 +23,7 @@
     tree
     neovim
     claude-code
+    solaar
   ];
 
   home.stateVersion = "25.11";
