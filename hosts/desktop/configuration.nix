@@ -56,6 +56,11 @@
   # Tailscale
   services.tailscale.enable = true;
 
+  services.displayManager.dms-greeter = {
+    enable = true;
+    compositor.name = "niri";
+  };
+
   # 1Password
   programs._1password.enable = true;
   programs._1password-gui = {
