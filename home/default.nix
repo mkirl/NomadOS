@@ -27,9 +27,14 @@
     solaar
     zellij
     fastfetch
+    discord
     jetbrains.idea-ultimate
     jetbrains.clion
   ];
+
+  home.keyboard = {
+    options = [ "caps:escape" ];
+  };
 
   xdg.desktopEntries.idea = {
     name = "IntelliJ IDEA";
@@ -44,6 +49,7 @@
     exec = "clion -Dawt.toolkit.name=WLToolkit %u";
     icon = "clion";
     terminal = false;
+
     categories = [ "Development" "IDE" ];
   };
 
