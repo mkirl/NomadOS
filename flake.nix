@@ -40,6 +40,7 @@
       specialArgs = { inherit ghostty; };
       modules = [
         ./hosts/desktop/configuration.nix
+	./modules/distrobox.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -59,6 +60,7 @@
       specialArgs = { inherit ghostty; };
       modules = [
         ./hosts/thinkpad/configuration.nix
+	./modules/distrobox.nix
         home-manager.nixosModules.home-manager
         niri.nixosModules.niri
         {
