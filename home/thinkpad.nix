@@ -10,5 +10,6 @@
     ghostty.packages.x86_64-linux.default
     pkgs.vscode
     pkgs.firefox
+    pkgs.xwayland-satellite
   ];
 }
