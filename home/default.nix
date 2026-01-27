@@ -32,10 +32,6 @@
     jetbrains.clion
   ];
 
-  home.keyboard = {
-    options = [ "caps:escape" ];
-  };
-
   xdg.desktopEntries.idea = {
     name = "IntelliJ IDEA";
     exec = "idea -Dawt.toolkit.name=WLToolkit %u";
@@ -51,6 +47,14 @@
     terminal = false;
 
     categories = [ "Development" "IDE" ];
+  };
+
+  xdg.desktopEntries.discord = {
+    name = "Discord";
+    exec = "discord --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    icon = "discord";
+    terminal = false;
+    categories = [ "Network" "InstantMessaging" ];
   };
 
   home.stateVersion = "25.11";
