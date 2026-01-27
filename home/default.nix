@@ -15,7 +15,6 @@
     userEmail = "michael.e.kirl@gmail.com";
   };
 
-
   home.packages = with pkgs; [
     htop
     ripgrep
@@ -26,6 +25,7 @@
     claude-code
     solaar
     zellij
+    fastfetch
     jetbrains.idea-ultimate
     jetbrains.clion
   ];
