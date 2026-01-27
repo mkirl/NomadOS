@@ -35,6 +35,7 @@
     discord
     jetbrains.idea-ultimate
     jetbrains.clion
+    distrobox
   ];
 
   xdg.desktopEntries.idea = {
