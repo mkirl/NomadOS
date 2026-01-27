@@ -16,6 +16,11 @@
     userEmail = "michael.e.kirl@gmail.com";
   };
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   home.packages = with pkgs; [
     htop
     ripgrep
