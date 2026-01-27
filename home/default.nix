@@ -36,6 +36,7 @@
     jetbrains.idea-ultimate
     jetbrains.clion
     distrobox
+    xwayland-satellite
   ];
 
   xdg.desktopEntries.idea = {
