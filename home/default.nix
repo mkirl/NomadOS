@@ -13,7 +13,7 @@
   programs.git = {
     enable = true;
     userName = "Mike";
-    userEmail = "michael.e.kirl@gmail.com";
+    userEmail = "91095398+mkirl@users.noreply.github.com";
   };
 
   programs.direnv = {
