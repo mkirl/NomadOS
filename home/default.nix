@@ -59,6 +59,8 @@
     jetbrains.clion
     distrobox
     xwayland-satellite
+    gcc
+    btop
   ];
 
   xdg.desktopEntries.idea = {
