@@ -43,8 +43,6 @@
     };
   };
 
-  programs.nix-ld.enable = true;
-
   home.packages = with pkgs; [
     htop
     ripgrep

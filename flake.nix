@@ -19,8 +19,9 @@
   outputs = { self, nixpkgs, home-manager, niri, ghostty, ... }: {
     nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
-      modules = [ 
-        ./hosts/vm/configuration.nix 
+      modules = [
+        ./hosts/vm/configuration.nix
+        ./modules/dev.nix 
         home-manager.nixosModules.home-manager
         niri.nixosModules.niri
         {
@@ -40,7 +41,8 @@
       specialArgs = { inherit ghostty; };
       modules = [
         ./hosts/desktop/configuration.nix
-	./modules/distrobox.nix
+        ./modules/dev.nix
+        ./modules/distrobox.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -60,7 +62,8 @@
       specialArgs = { inherit ghostty; };
       modules = [
         ./hosts/thinkpad/configuration.nix
-	./modules/distrobox.nix
+        ./modules/dev.nix
+        ./modules/distrobox.nix
         home-manager.nixosModules.home-manager
         niri.nixosModules.niri
         {
