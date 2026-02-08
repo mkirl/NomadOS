@@ -20,6 +20,11 @@
     enable = true;
     nix-direnv.enable = true;
   };
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   programs.helix = {
     enable = true;
     settings = {
@@ -61,6 +66,10 @@
     xwayland-satellite
     gcc
     btop
+    fzf
+    bat
+    eza
+    jq
   ];
 
   xdg.desktopEntries.idea = {
