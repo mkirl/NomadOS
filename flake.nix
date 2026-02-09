@@ -31,6 +31,7 @@
         }
         {
           programs.niri.enable = true;
+          programs.niri.package = pkgs.niri-unstable;
           programs.dms-shell.enable = true;
         }
       ];
