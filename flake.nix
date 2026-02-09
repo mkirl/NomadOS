@@ -78,7 +78,6 @@
 	    enable = true;
 	    systemd.enable = true;
 	    enableSystemMonitoring = true;
-	    enableClipboard = true;
 	    enableVPN = true;
 	    enableDynamicTheming = true;
 	    enableAudioWavelength = true;
