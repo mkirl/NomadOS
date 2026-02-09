@@ -60,7 +60,7 @@
     zellij
     fastfetch
     discord
-    jetbrains.idea-ultimate
+    jetbrains.idea
     jetbrains.clion
     distrobox
     xwayland-satellite
