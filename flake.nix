@@ -31,7 +31,6 @@
         }
         {
           programs.niri.enable = true;
-          programs.niri.package = pkgs.niri-unstable;
           programs.dms-shell.enable = true;
         }
       ];
@@ -44,6 +43,7 @@
         ./hosts/desktop/configuration.nix
         ./modules/dev.nix
         ./modules/distrobox.nix
+        ./modules/niri.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -65,6 +65,7 @@
         ./hosts/thinkpad/configuration.nix
         ./modules/dev.nix
         ./modules/distrobox.nix
+        ./modules/niri.nix
         home-manager.nixosModules.home-manager
         niri.nixosModules.niri
         {
