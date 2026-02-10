@@ -7,6 +7,10 @@
       set fish_greeting
       fastfetch
     '';
+    shellAliases = {
+      idea = "command idea -Dawt.toolkit.name=WLToolkit &>/dev/null &; disown";
+      clion = "command clion -Dawt.toolkit.name=WLToolkit &>/dev/null &; disown";
+    };
   };
 
 
