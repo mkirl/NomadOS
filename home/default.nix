@@ -101,6 +101,20 @@
     categories = [ "Network" "InstantMessaging" ];
   };
 
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    size = 24;
+  };
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+  };
+
   home.stateVersion = "25.11";
 
 }
