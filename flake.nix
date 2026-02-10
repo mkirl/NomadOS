@@ -44,6 +44,7 @@
         ./modules/dev.nix
         ./modules/distrobox.nix
         ./modules/niri.nix
+        niri.nixosModules.niri
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -52,7 +53,6 @@
           home-manager.extraSpecialArgs = { inherit ghostty; };
         }
         {
-          programs.niri.enable = true;
           programs.dms-shell.enable = true;
         }
       ];
@@ -66,8 +66,8 @@
         ./modules/dev.nix
         ./modules/distrobox.nix
         ./modules/niri.nix
-        home-manager.nixosModules.home-manager
         niri.nixosModules.niri
+        home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -75,17 +75,16 @@
           home-manager.extraSpecialArgs = { inherit ghostty; };
         }
         {
-          programs.niri.enable = true;
-	  programs.dms-shell = {
-	    enable = true;
-	    systemd.enable = true;
-	    enableSystemMonitoring = true;
-	    enableVPN = true;
-	    enableDynamicTheming = true;
-	    enableAudioWavelength = true;
-	    enableCalendarEvents = true;
+          programs.dms-shell = {
+            enable = true;
+            systemd.enable = true;
+            enableSystemMonitoring = true;
+            enableVPN = true;
+            enableDynamicTheming = true;
+            enableAudioWavelength = true;
+            enableCalendarEvents = true;
           };
-	}
+        }
       ];
     };
   };
