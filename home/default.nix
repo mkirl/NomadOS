@@ -32,7 +32,7 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "solarized_osaka";
+      theme = "gruvbox";
       editor.cursor-shape = {
         normal = "block";
         insert = "bar";
