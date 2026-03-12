@@ -74,6 +74,7 @@
     bat
     eza
     jq
+    clang-tools
   ];
 
   xdg.desktopEntries.idea = {
