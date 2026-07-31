@@ -55,6 +55,7 @@
     vim
     curl
     wget
+    brightnessctl
   ];
 
   programs.fish.enable = true;
@@ -67,9 +68,9 @@
     polkitPolicyOwners = [ "mike" ];
   };
 
-  services.displayManager.dms-greeter = {
+  programs.noctalia-greeter = {
     enable = true;
-    compositor.name = "niri";
+    settings.session.default = "niri";
   };
 
   # Laptop power management
@@ -80,8 +81,6 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  # Backlight
-  programs.light.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.11";

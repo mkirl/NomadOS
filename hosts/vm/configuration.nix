@@ -29,15 +29,6 @@
     wget
   ];
 
-  programs.dms-shell = {
-    enable = true;
-    systemd.enable = true;
-
-    enableSystemMonitoring = true;
-    enableClipboard = true;
-    enableDynamicTheming = true;
-  };
-
   programs.fish.enable = true;
 
   services.openssh.enable = true;

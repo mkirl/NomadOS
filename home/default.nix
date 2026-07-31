@@ -102,6 +102,48 @@
     categories = [ "Network" "InstantMessaging" ];
   };
 
+  programs.noctalia = {
+    enable = true;
+    settings = {
+      theme = {
+        mode = "dark";
+        source = "wallpaper";
+        wallpaper_scheme = "m3-content";
+      };
+      bar.default = {
+        position = "top";
+        thickness = 40;
+        capsule = true;
+        capsule_thickness = 0.8;
+        capsule_padding = 8;
+        background_opacity = 0.9;
+        margin_edge = 6;
+        margin_ends = 6;
+        shadow = true;
+        concave_edge_corners = true;
+        font_weight = 500;
+        widget_spacing = 4;
+        start = [ "launcher" "workspaces" "cpu" "ram" "gpu" "network_rx" "network_tx" ];
+        center = [ "clock" "notifications" ];
+        end = [
+          "network"
+          "bluetooth"
+          "volume"
+          "brightness"
+          "battery"
+          "session"
+        ];
+      };
+      wallpaper.default = {
+        enabled = true;
+        path = "${../wallpapers/topo2.png}";
+      };
+      widget.network = {
+        show_name = false;
+      };
+    };
+  };
+
   home.pointerCursor = {
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;

@@ -56,9 +56,9 @@
   # Tailscale
   services.tailscale.enable = true;
 
-  services.displayManager.dms-greeter = {
+  programs.noctalia-greeter = {
     enable = true;
-    compositor.name = "niri";
+    settings.session.default = "niri";
   };
 
   # 1Password
