@@ -16,8 +16,8 @@
 
   programs.git = {
     enable = true;
-    userName = "Mike";
-    userEmail = "91095398+mkirl@users.noreply.github.com";
+    settings.user.name = "Mike";
+    settings.user.email = "91095398+mkirl@users.noreply.github.com";
   };
 
   programs.direnv = {
@@ -112,39 +112,43 @@
       };
       bar.default = {
         position = "top";
-        thickness = 40;
+        thickness = 36;
         capsule = true;
         capsule_thickness = 0.8;
         capsule_padding = 8;
-        background_opacity = 0.9;
+        background_opacity = 0.85;
         margin_edge = 6;
-        margin_ends = 6;
+        margin_ends = 10;
         shadow = true;
         concave_edge_corners = true;
         font_weight = 500;
-        widget_spacing = 4;
-        start = [ "launcher" "workspaces" "cpu" "ram" "gpu" "network_rx" "network_tx" ];
-        center = [ "clock" "notifications" ];
+        widget_spacing = 6;
+        start = [ "launcher" "workspaces" "cpu" "ram" "network_rx" ];
+        center = [ "clock" ];
         end = [
+          "notifications"
           "network"
           "bluetooth"
           "volume"
-          "brightness"
           "battery"
           "session"
         ];
+        capsule_group = [ "clock" ];
       };
       wallpaper.default = {
         enabled = true;
         path = "${../wallpapers/topo2.png}";
       };
       widget.network = {
-        show_name = false;
+        show_label = false;
+        vpn_status = "both";
+        show_vpn_label = true;
       };
     };
   };
 
   home.pointerCursor = {
+    enable = true;
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;
     size = 24;
