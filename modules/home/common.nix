@@ -18,6 +18,14 @@
       settings.user.email = "91095398+mkirl@users.noreply.github.com";
     };
 
+    programs.ssh = {
+      enable = true;
+      matchBlocks."github.com" = {
+        identityFile = "~/.ssh/github";
+        identitiesOnly = true;
+      };
+    };
+
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
