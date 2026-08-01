@@ -119,7 +119,7 @@
         };
         bar.default = {
           position = "left";
-          thickness = 44;
+          thickness = 40;
           capsule = true;
           capsule_thickness = 0.85;
           capsule_padding = 6;
@@ -129,12 +129,11 @@
           shadow = true;
           concave_edge_corners = true;
           font_weight = 500;
-          widget_spacing = 8;
+          widget_spacing = 6;
+          icon_only = true;
           start = [ "launcher" "workspaces" ];
-          center = [ "clock" ];
+          center = [ ];
           end = [
-            "cpu"
-            "ram"
             "notifications"
             "network"
             "bluetooth"
@@ -142,7 +141,7 @@
             "battery"
             "session"
           ];
-          capsule_group = [ "clock" "workspaces" ];
+          capsule_group = [ "workspaces" ];
         };
         wallpaper.default = {
           enabled = true;
