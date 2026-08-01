@@ -110,21 +110,23 @@
           wallpaper_scheme = "m3-content";
         };
         bar.default = {
-          position = "top";
-          thickness = 36;
+          position = "left";
+          thickness = 44;
           capsule = true;
-          capsule_thickness = 0.8;
-          capsule_padding = 8;
-          background_opacity = 0.85;
-          margin_edge = 6;
-          margin_ends = 10;
+          capsule_thickness = 0.85;
+          capsule_padding = 6;
+          background_opacity = 0.75;
+          margin_edge = 8;
+          margin_ends = 12;
           shadow = true;
           concave_edge_corners = true;
           font_weight = 500;
-          widget_spacing = 6;
-          start = [ "launcher" "workspaces" "cpu" "ram" "network_rx" ];
+          widget_spacing = 8;
+          start = [ "launcher" "workspaces" ];
           center = [ "clock" ];
           end = [
+            "cpu"
+            "ram"
             "notifications"
             "network"
             "bluetooth"
@@ -132,7 +134,7 @@
             "battery"
             "session"
           ];
-          capsule_group = [ "clock" ];
+          capsule_group = [ "clock" "workspaces" ];
         };
         wallpaper.default = {
           enabled = true;
