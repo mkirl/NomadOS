@@ -36,29 +36,6 @@
       enableFishIntegration = true;
     };
 
-    programs.helix = {
-      enable = true;
-      settings = {
-        theme = "gruvbox";
-        editor.cursor-shape = {
-          normal = "block";
-          insert = "bar";
-          select = "underline";
-        };
-      };
-      languages.language = [{
-        name = "nix";
-        auto-format = true;
-        formatter.command = lib.getExe pkgs.nixfmt;
-      }];
-      themes = {
-        autumn_night_transparent = {
-          "inherits" = "autumn_night";
-          "ui.background" = { };
-        };
-      };
-    };
-
     home.packages = with pkgs; [
       htop
       ripgrep
@@ -132,8 +109,10 @@
           widget_spacing = 6;
           icon_only = true;
           start = [ "launcher" "workspaces" ];
-          center = [ ];
+          center = [ "clock" ];
           end = [
+            "cpu"
+            "ram"
             "notifications"
             "network"
             "bluetooth"
@@ -141,7 +120,7 @@
             "battery"
             "session"
           ];
-          capsule_group = [ "workspaces" ];
+          capsule_group = [ "clock" "workspaces" ];
         };
         wallpaper.default = {
           enabled = true;
@@ -151,6 +130,23 @@
           show_label = false;
           vpn_status = "both";
           show_vpn_label = true;
+        };
+        widget.workspaces = { show_labels = false; };
+        widget.cpu = {
+          type = "sysmon";
+          stat = "cpu_usage";
+          visualization = "gauge";
+          show_value = false;
+        };
+        widget.ram = {
+          type = "sysmon";
+          stat = "ram_used";
+          visualization = "gauge";
+          show_value = false;
+        };
+        widget.launcher = {
+          custom_image = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
+          custom_image_colorize = true;
         };
       };
     };

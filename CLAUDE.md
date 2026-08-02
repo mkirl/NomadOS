@@ -60,4 +60,4 @@ The flake defines three NixOS configurations:
 - Desktop/thinkpad share the niri overlay (`niri.overlays.niri`) and modules (`dev`, `distrobox`, `niri`); the VM does not use distrobox or the niri module
 - JetBrains IDEs and Discord use custom desktop entries with Wayland-specific flags (`-Dawt.toolkit.name=WLToolkit`, `--ozone-platform=wayland`)
 - The shell is Fish across all machines, with direnv + nix-direnv and zoxide enabled
-- Helix is the configured text editor with gruvbox theme and nixfmt-rfc-style auto-formatting for `.nix` files
+- Zed is the configured text editor (x86_64 hosts only)
