@@ -63,6 +63,11 @@
       enableFishIntegration = true;
     };
 
+    programs.yazi = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
     home.sessionVariables = {
       EDITOR = "nvim";
     };
@@ -102,6 +107,7 @@
       jetbrains.clion
       distrobox
       xwayland-satellite
+      valgrind
     ];
 
     xdg.desktopEntries.idea = {
