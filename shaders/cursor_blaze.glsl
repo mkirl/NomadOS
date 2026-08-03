@@ -77,7 +77,7 @@ const vec4 PREVIOUS_CURSOR_COLOR = TRAIL_COLOR;
 const vec4 TRAIL_COLOR_ACCENT = vec4(0.537, 0.902, 0.761, 1.0); // lighter mint
 const float DURATION = .5;
 // Scales how much trail color replaces the background; lower = dimmer trail.
-const float TRAIL_INTENSITY = 0.45;
+const float TRAIL_INTENSITY = 0.25;
 // Don't draw trail within that distance * cursor size.
 // This prevents trails from appearing when typing.
 const float DRAW_THRESHOLD = 1.5;
