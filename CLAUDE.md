@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-NomadOS is a NixOS flake-based system configuration managing multiple machines. It uses Nix flakes with Home Manager for declarative system and user-level configuration. The window manager is niri (Wayland tiling WM) with the dms-shell/dms-greeter display manager.
+NomadOS is a NixOS flake-based system configuration managing multiple machines. It uses Nix flakes with Home Manager for declarative system and user-level configuration. The window manager is niri (Wayland tiling WM) with noctalia as the shell/bar and noctalia-greeter as the display manager.
+
+The flake is organized using the **dendritic pattern**: `flake.nix` calls `import-tree` over `modules/` instead of listing imports by hand, so every `.nix` file under `modules/` is auto-discovered and imported as its own flake-parts module. See `README.md` for a full explanation of the pattern and directory layout.
 
 ## Build Commands
 
@@ -30,34 +32,42 @@ nixfmt <file.nix>
 
 ## Architecture
 
-The flake defines three NixOS configurations:
+The flake defines three NixOS configurations, each assembled in `modules/hosts/<machine>/default.nix`:
 
 - **`desktop`** (x86_64-linux) - Desktop with NVIDIA GPU, user `mike`
-- **`thinkpad`** (x86_64-linux) - ThinkPad laptop with Intel GPU, LUKS encryption, battery/bluetooth/backlight support, user `mike`
+- **`thinkpad`** (x86_64-linux) - ThinkPad laptop with Intel GPU, LUKS encryption, bluetooth support, user `mike`
 - **`vm`** (aarch64-linux) - ARM VM for testing, user `mikey`
 
 ### Flake Inputs
 
 - `nixpkgs` (nixos-unstable)
+- `flake-parts` / `import-tree` - drive the dendritic module structure (see below)
 - `home-manager` - per-user package/config management
 - `niri` - niri-flake (Wayland compositor), with overlay applied on desktop/thinkpad
-- `ghostty` - Ghostty terminal (used on desktop/thinkpad only, passed via `specialArgs`)
+- `ghostty` - Ghostty terminal (installed on desktop/thinkpad via `home.packages`)
+- `noctalia` / `noctalia-greeter` - shell/bar and display manager
 
 ### Directory Layout
 
-- `hosts/<machine>/configuration.nix` - Per-machine NixOS system config (hardware, drivers, networking, services)
-- `hosts/<machine>/hardware-configuration.nix` - Auto-generated hardware config (do not edit manually)
-- `home/default.nix` - Shared Home Manager config imported by all machines (shell, editor, dev tools, desktop entries, GTK/cursor theming)
-- `home/{desktop,thinkpad,vm}.nix` - Per-machine Home Manager overrides (username, machine-specific packages)
-- `modules/` - Reusable NixOS modules:
+- `flake.nix` - `mkFlake { inherit inputs; } (import-tree ./modules)`; no manual import list
+- `modules/parts.nix` - flake-parts `systems` declaration
+- `modules/features/` - one file per reusable NixOS feature, each exposing `flake.nixosModules.<name>`:
   - `dev.nix` - Enables nix-ld (for Mason/dynamic binary compatibility)
-  - `distrobox.nix` - Podman with Docker compat (desktop/thinkpad only)
-  - `niri.nix` - niri-unstable + caps-to-escape remap (desktop/thinkpad only)
-- `configuration.nix` - Base/template config (mostly commented-out defaults, not actively imported)
+  - `distrobox.nix` - Podman with Docker compat
+  - `fonts.nix` - Nerd Fonts
+  - `home-manager.nix` - wires up the Home Manager NixOS module
+  - `niri.nix` - niri-unstable + caps-to-escape remap
+  - `noctalia.nix` / `noctalia-greeter.nix` - noctalia shell and greeter
+- `modules/home/common.nix` - shared Home Manager config exposed as `flake.homeModules.common` (shell, editor, dev tools, desktop entries, GTK/cursor theming), imported by all machines
+- `modules/hosts/<machine>/default.nix` - builds `flake.nixosConfigurations.<machine>` by importing `hosts/<machine>/configuration.nix` plus the `self.nixosModules.*` features that machine needs, and sets up its Home Manager user via `self.homeModules.common`
+- `hosts/<machine>/configuration.nix` - Per-machine low-level NixOS system config (hardware, drivers, networking, services)
+- `hosts/<machine>/hardware-configuration.nix` - Auto-generated hardware config (do not edit manually)
+- `wallpapers/` - wallpapers referenced by noctalia config
 
 ### Key Patterns
 
-- Desktop/thinkpad share the niri overlay (`niri.overlays.niri`) and modules (`dev`, `distrobox`, `niri`); the VM does not use distrobox or the niri module
+- New features are added as new files under `modules/features/`; import-tree picks them up automatically, so nothing else needs editing to make a module available - a host still has to opt in via `self.nixosModules.<name>` in its `modules/hosts/<machine>/default.nix`
+- Desktop/thinkpad share the niri, distrobox, and noctalia-greeter modules; the VM does not use distrobox, niri, or noctalia-greeter
 - JetBrains IDEs and Discord use custom desktop entries with Wayland-specific flags (`-Dawt.toolkit.name=WLToolkit`, `--ozone-platform=wayland`)
-- The shell is Fish across all machines, with direnv + nix-direnv and zoxide enabled
+- The shell is Fish across all machines, with direnv + nix-direnv, zoxide, and starship enabled
 - Zed is the configured text editor (x86_64 hosts only)

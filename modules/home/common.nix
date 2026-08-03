@@ -18,6 +18,23 @@
       settings.user.email = "91095398+mkirl@users.noreply.github.com";
     };
 
+    programs.ghostty = {
+      enable = true;
+      # Package is installed per-host from the ghostty flake input (bleeding
+      # edge) rather than nixpkgs; this block only manages its config file.
+      package = null;
+      systemd.enable = false;
+      settings = {
+        window-decoration = false;
+        custom-shader = "${../../shaders/cursor_blaze.glsl}";
+        background-opacity = 0.85;
+        # Colors are generated from the wallpaper by noctalia at
+        # ~/.config/ghostty/config-dankcolors; "?" makes the include a no-op
+        # if noctalia hasn't written it yet. Loaded last, so it wins.
+        config-file = "?config-dankcolors";
+      };
+    };
+
     programs.gh = {
       enable = true;
       settings.git_protocol = "ssh";
