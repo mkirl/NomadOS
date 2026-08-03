@@ -8,6 +8,7 @@
       self.nixosModules.noctaliaGreeter
       self.nixosModules.dev
       self.nixosModules.distrobox
+      self.nixosModules.fonts
       self.nixosModules.homeManager
       {
         home-manager.users.mike = { pkgs, ... }: {

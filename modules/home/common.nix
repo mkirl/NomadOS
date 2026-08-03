@@ -18,6 +18,11 @@
       settings.user.email = "91095398+mkirl@users.noreply.github.com";
     };
 
+    programs.gh = {
+      enable = true;
+      settings.git_protocol = "ssh";
+    };
+
     programs.ssh = {
       enable = true;
       matchBlocks."github.com" = {
@@ -36,12 +41,27 @@
       enableFishIntegration = true;
     };
 
+    home.sessionVariables = {
+      EDITOR = "nvim";
+    };
+
+    home.activation.lazyvim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ ! -d "$HOME/.config/nvim" ]; then
+        $DRY_RUN_CMD ${pkgs.git}/bin/git clone https://github.com/LazyVim/starter "$HOME/.config/nvim"
+        $DRY_RUN_CMD rm -rf "$HOME/.config/nvim/.git"
+      fi
+    '';
+
     home.packages = with pkgs; [
       htop
       ripgrep
       fd
       tree
       neovim
+      unzip
+      lazygit
+      nodejs
+      wl-clipboard
       claude-code
       zellij
       fastfetch
@@ -108,8 +128,8 @@
           font_weight = 500;
           widget_spacing = 6;
           icon_only = true;
-          start = [ "launcher" "workspaces" ];
-          center = [ "clock" ];
+          start = [ "launcher" "clipboard" ];
+          center = [ "clock" "workspaces" ];
           end = [
             "cpu"
             "ram"

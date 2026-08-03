@@ -6,6 +6,7 @@
       self.nixosModules.niri
       self.nixosModules.noctalia
       self.nixosModules.dev
+      self.nixosModules.fonts
       self.nixosModules.homeManager
       {
         home-manager.users.mikey = { pkgs, ... }: {
