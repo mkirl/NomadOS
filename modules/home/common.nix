@@ -41,6 +41,11 @@
       enableFishIntegration = true;
     };
 
+    programs.starship = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
     home.sessionVariables = {
       EDITOR = "nvim";
     };
