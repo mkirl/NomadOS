@@ -10,6 +10,7 @@
       self.nixosModules.distrobox
       self.nixosModules.fonts
       self.nixosModules.homeManager
+      self.nixosModules.mosh
       {
         home-manager.users.mike = { pkgs, ... }: {
           imports = [ self.homeModules.common ];
