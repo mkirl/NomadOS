@@ -68,6 +68,15 @@
       enableFishIntegration = true;
     };
 
+    programs.zed-editor = lib.mkIf pkgs.stdenv.hostPlatform.isx86_64 {
+      enable = true;
+      # Symlinks the Nix-built remote_server binary into ~/.zed_server so
+      # incoming SSH remote-dev connections find a NixOS-compatible binary
+      # already in place instead of downloading/running a generic
+      # dynamically-linked one that fails on NixOS's non-FHS layout.
+      installRemoteServer = true;
+    };
+
     home.sessionVariables = {
       EDITOR = "nvim";
     };

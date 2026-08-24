@@ -12,7 +12,7 @@
       self.nixosModules.homeManager
       {
         home-manager.users.mike = { pkgs, ... }: {
-          imports = [ self.homeModules.common self.homeModules.zed ];
+          imports = [ self.homeModules.common ];
           home.username = "mike";
           home.homeDirectory = "/home/mike";
           home.packages = [
