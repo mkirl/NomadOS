@@ -28,6 +28,22 @@ outputs = inputs:
 
 Because every file is independently importable and namespaced under `flake.*`, features stay decoupled: `modules/features/niri.nix` knows nothing about `modules/hosts/desktop/default.nix`, it just registers `flake.nixosModules.niri`. Hosts then compose whichever named modules they need via `self.nixosModules.*` / `self.homeModules.*`.
 
+> **Caveat — `homeModules` is currently single-file only.** `flake-parts` ships a built-in declaration for `flake.nixosModules` (a proper mergeable option, `lazyAttrsOf deferredModule`), which is why any number of files under `modules/features/` can each add their own `nixosModules.<name>` with no conflict. There is no equivalent built-in declaration for `flake.homeModules` — flake-parts doesn't know Home Manager exists — so right now only `modules/home/common.nix` may set it; a second file doing `flake.homeModules.<name> = ...` fails with `The option 'flake.homeModules' is defined multiple times`. Until this is fixed, new Home Manager config goes into `common.nix` directly (gate it with `lib.mkIf`/`lib.optionals` on `pkgs.stdenv.hostPlatform.isx86_64` etc. as needed), not a new file.
+>
+> To split `homeModules` across files the way `nixosModules` already works, add a small module declaring the option yourself, copying flake-parts' own pattern from its `modules/nixosModules.nix`:
+> ```nix
+> { lib, moduleLocation, ... }: {
+>   options.flake.homeModules = lib.mkOption {
+>     type = lib.types.lazyAttrsOf lib.types.deferredModule;
+>     default = { };
+>     apply = lib.mapAttrs (k: v: {
+>       _file = "${toString moduleLocation}#homeModules.${k}";
+>       imports = [ v ];
+>     });
+>   };
+> }
+> ```
+
 ## Directory layout
 
 ```
@@ -44,6 +60,7 @@ modules/
     noctalia-greeter.nix           #   -> flake.nixosModules.noctaliaGreeter
   home/
     common.nix                     # -> flake.homeModules.common, shared Home Manager config
+                                    #    (only file allowed to set homeModules right now, see caveat above)
   hosts/
     desktop/default.nix            # -> flake.nixosConfigurations.desktop
     thinkpad/default.nix           # -> flake.nixosConfigurations.thinkpad
