@@ -100,7 +100,6 @@
       jq
       clang-tools
     ] ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
-      zed-editor
       solaar
       discord
       jetbrains.idea
