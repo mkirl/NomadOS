@@ -45,6 +45,7 @@
     vim
     curl
     wget
+    gdb
   ];
 
   # Fish shell

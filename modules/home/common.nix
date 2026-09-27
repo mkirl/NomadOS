@@ -98,6 +98,7 @@
       lazygit
       nodejs
       wl-clipboard
+      opencode
       claude-code
       zellij
       fastfetch
