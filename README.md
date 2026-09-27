@@ -8,7 +8,7 @@ A NixOS flake configuration for multiple machines, built with [flake-parts](http
 - **`thinkpad`** (x86_64-linux) — ThinkPad laptop with Intel GPU, LUKS encryption, user `mike`
 - **`vm`** (aarch64-linux) — ARM VM for testing, user `mikey`
 
-Window manager is [niri](https://github.com/YaLTeR/niri) (Wayland tiling WM) with [noctalia](https://github.com/noctalia-dev/noctalia) as the shell/bar and `noctalia-greeter` as the display manager.
+Window manager is [Umbriel](https://github.com/noctalia-dev/umbriel) (Wayland compositor) with [noctalia](https://github.com/noctalia-dev/noctalia) as the shell/bar and `noctalia-greeter` as the display manager.
 
 ## The dendritic pattern
 
@@ -26,7 +26,7 @@ outputs = inputs:
 - **`flake.homeModules.<name>`** — a reusable Home Manager module
 - **`flake.nixosConfigurations.<name>`** — a full machine, assembled from the modules above
 
-Because every file is independently importable and namespaced under `flake.*`, features stay decoupled: `modules/features/niri.nix` knows nothing about `modules/hosts/desktop/default.nix`, it just registers `flake.nixosModules.niri`. Hosts then compose whichever named modules they need via `self.nixosModules.*` / `self.homeModules.*`.
+Because every file is independently importable and namespaced under `flake.*`, features stay decoupled: `modules/features/umbriel.nix` knows nothing about `modules/hosts/desktop/default.nix`, it just registers `flake.nixosModules.umbriel`. Hosts then compose whichever named modules they need via `self.nixosModules.*` / `self.homeModules.*`.
 
 > **Caveat — `homeModules` is currently single-file only.** `flake-parts` ships a built-in declaration for `flake.nixosModules` (a proper mergeable option, `lazyAttrsOf deferredModule`), which is why any number of files under `modules/features/` can each add their own `nixosModules.<name>` with no conflict. There is no equivalent built-in declaration for `flake.homeModules` — flake-parts doesn't know Home Manager exists — so right now only `modules/home/common.nix` may set it; a second file doing `flake.homeModules.<name> = ...` fails with `The option 'flake.homeModules' is defined multiple times`. Until this is fixed, new Home Manager config goes into `common.nix` directly (gate it with `lib.mkIf`/`lib.optionals` on `pkgs.stdenv.hostPlatform.isx86_64` etc. as needed), not a new file.
 >
@@ -55,7 +55,7 @@ modules/
     distrobox.nix                  #   -> flake.nixosModules.distrobox (podman/docker compat)
     fonts.nix                      #   -> flake.nixosModules.fonts
     home-manager.nix                #   -> flake.nixosModules.homeManager
-    niri.nix                       #   -> flake.nixosModules.niri
+    umbriel.nix                    #   -> flake.nixosModules.umbriel
     noctalia.nix                   #   -> flake.nixosModules.noctalia
     noctalia-greeter.nix           #   -> flake.nixosModules.noctaliaGreeter
   home/

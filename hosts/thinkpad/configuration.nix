@@ -68,11 +68,6 @@
     polkitPolicyOwners = [ "mike" ];
   };
 
-  programs.noctalia-greeter = {
-    enable = true;
-    settings.session.default = "niri";
-  };
-
   # Laptop power management
   services.thermald.enable = true;
   services.upower.enable = true;
@@ -80,8 +75,6 @@
   # Bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
-
-
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.11";
 }

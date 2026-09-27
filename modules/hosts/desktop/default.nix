@@ -3,7 +3,7 @@
     system = "x86_64-linux";
     modules = [
       ../../../hosts/desktop/configuration.nix
-      self.nixosModules.niri
+      self.nixosModules.umbriel
       self.nixosModules.noctalia
       self.nixosModules.noctaliaGreeter
       self.nixosModules.dev

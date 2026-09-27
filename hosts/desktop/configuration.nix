@@ -57,18 +57,13 @@
   # Tailscale
   services.tailscale.enable = true;
 
-  programs.noctalia-greeter = {
-    enable = true;
-    settings.session.default = "niri";
-  };
-
   # 1Password
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = [ "mike" ];
   };
-  
+
   # Allow unfree (NVIDIA)
   nixpkgs.config.allowUnfree = true;
 

@@ -3,7 +3,7 @@
     system = "aarch64-linux";
     modules = [
       ../../../hosts/vm/configuration.nix
-      self.nixosModules.niri
+      self.nixosModules.umbriel
       self.nixosModules.noctalia
       self.nixosModules.dev
       self.nixosModules.fonts

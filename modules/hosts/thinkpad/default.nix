@@ -3,7 +3,7 @@
     system = "x86_64-linux";
     modules = [
       ../../../hosts/thinkpad/configuration.nix
-      self.nixosModules.niri
+      self.nixosModules.umbriel
       self.nixosModules.noctalia
       self.nixosModules.noctaliaGreeter
       self.nixosModules.dev
@@ -19,7 +19,6 @@
             inputs.ghostty.packages.x86_64-linux.default
             pkgs.vscode
             pkgs.firefox
-            pkgs.xwayland-satellite
           ];
         };
       }

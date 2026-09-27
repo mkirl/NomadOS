@@ -1,4 +1,4 @@
-{ ... }: {
+{ inputs, ... }: {
   flake.homeModules.common = { config, pkgs, lib, ... }: {
     programs.fish = {
       enable = true;
@@ -66,6 +66,7 @@
     programs.yazi = {
       enable = true;
       enableFishIntegration = true;
+      shellWrapperName = "yy";
     };
 
     programs.zed-editor = lib.mkIf pkgs.stdenv.hostPlatform.isx86_64 {
@@ -115,7 +116,6 @@
       jetbrains.idea
       jetbrains.clion
       distrobox
-      xwayland-satellite
       valgrind
     ];
 
@@ -204,6 +204,22 @@
         widget.launcher = {
           custom_image = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
           custom_image_colorize = true;
+        };
+      };
+    };
+
+    programs.umbriel = {
+      enable = true;
+      package = null;
+      settings = {
+        include = {
+          files = [ "${inputs.umbriel.packages.${pkgs.stdenv.hostPlatform.system}.default}/share/umbriel/config.toml" ];
+          optional.files = [ "~/.config/umbriel/noctalia.toml" ];
+        };
+        input.keyboard.options = "caps:escape";
+        keybinds."Mod+Return" = {
+          action = "spawn:${if pkgs.stdenv.hostPlatform.isx86_64 then "ghostty" else "foot"}";
+          repeat = false;
         };
       };
     };
