@@ -11,6 +11,7 @@
       self.nixosModules.fonts
       self.nixosModules.homeManager
       self.nixosModules.mosh
+      self.nixosModules.ollama
       {
         home-manager.users.mike = { pkgs, ... }: {
           imports = [ self.homeModules.common ];
